@@ -25,7 +25,7 @@ elif st.session_state.page == "choose_flower":
     st.write("Before you are several seeds. What flower are you reminded of?")
 
     flowers = ["🌹 rose", "🌻 sunflower", "🌷 tulip", "🌼 daisy", "🪻 lavender", "🌸 cherry blossom"]
-    selected_flower = st.selectbox("Select a flower:", flowers)
+    selected_flower = st.selectbox("I see you reflected in a...", flowers)
 
     if st.button("Pick up seed"):
         st.session_state.flower = selected_flower
@@ -54,3 +54,7 @@ elif st.session_state.page == "new_memory":
     #SCREEN 3: new memory
     st.title("A new memory has been planted!")
     st.write(f"You planted a {st.session_state.flower}!")
+
+    st.subheader("Memory tag:")
+    memory_tag = st.text_input("I found you when...", "")
+    memory_tag = st.text_area("Describe the memory:", "")
