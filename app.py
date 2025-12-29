@@ -2,13 +2,8 @@ import streamlit as st
 
 st.set_page_config(page_title="Miss you garden", page_icon="🌸")
 
-#knowing what screen is on display
-if "page" not in st.session_state:
-    st.session_state.page = "garden"
-if "flower" not in st.session_state:
-    st.session_state.flower = None
-if "confirm_flower" not in st.session_state:
-    st.session_state.confirm_flower = False
+from state import init_state
+init_state()
 
 if st.session_state.page == "garden":
     #SCREEN 1: garden
@@ -56,5 +51,18 @@ elif st.session_state.page == "new_memory":
     st.write(f"You planted a {st.session_state.flower}!")
 
     st.subheader("Memory tag:")
-    memory_tag = st.text_input("I found you when...", "")
-    memory_tag = st.text_area("Describe the memory:", "")
+    memory_tag = st.text_area("What made me think of you was...", placeholder="e.g. 'An ugly teddy bear'")
+    memory_image = st.file_uploader("What made me think of you looks like...", type=["png", "jpg", "jpeg", "HEIC"], help="Upload an image from thwat moment.")
+    memory_image_caption = st.text_input("Image caption:", placeholder="e.g. 'The ugly teddy bear we got on our first date.'")
+    memory_audio = st.audio("What made me think of you sounds like...", type=["mp3", "wav", "m4a"],help="Upload an audio from that moment.")
+    
+    if st.button("Attatch memory tag!"):
+        st.session_state.page = "flower_overview"
+        st.rerun()
+
+    if st.button("Back to garden"):
+        st.session_state.page = "garden"
+        st.rerun()
+
+elif st.session_state.page == "flower_overview":
+    st.title("COMING SOON!")
