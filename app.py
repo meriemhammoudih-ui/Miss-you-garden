@@ -21,13 +21,13 @@ if st.session_state.page == "garden":
 
 elif st.session_state.page == "choose_flower":
     #SCREEN 2: choose flower
-    st.title("Choose a flower")
-    st.write("what flower do I remind you of?")
+    st.title("Welcome to the flower shop!")
+    st.write("Before you are several seeds. What flower are you reminded of?")
 
-    flowers = ["🌹 Rose", "🌻 Sunflower", "🌷 Tulip", "🌼 Daisy", "🪻 Lavender", "🌸 cherry blossom"]
+    flowers = ["🌹 rose", "🌻 sunflower", "🌷 tulip", "🌼 daisy", "🪻 lavender", "🌸 cherry blossom"]
     selected_flower = st.selectbox("Select a flower:", flowers)
 
-    if st.button("Plant flower"):
+    if st.button("Pick up seed"):
         st.session_state.flower = selected_flower
         st.session_state.page = "confirm_flower"
         st.rerun()
@@ -38,8 +38,8 @@ elif st.session_state.page == "choose_flower":
 
 elif st.session_state.page == "confirm_flower":
     #SCREEN 2.5: confirm flower
-    st.title("Confirm your choice")
-    st.write(f"In your hands is a {st.session_state.flower} seed... will you plant it?")
+    st.title("Checkout.")
+    st.write(f"In your hands is a {st.session_state.flower} seed... will you take it?")
 
     if st.button("Yes, plant it!"):
         st.session_state.page = "new_memory"
@@ -52,5 +52,5 @@ elif st.session_state.page == "confirm_flower":
 
 elif st.session_state.page == "new_memory":
     #SCREEN 3: new memory
-    st.title("New Memory")
+    st.title("A new memory has been planted!")
     st.write(f"You planted a {st.session_state.flower}!")
