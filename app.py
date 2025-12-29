@@ -7,6 +7,8 @@ if "page" not in st.session_state:
     st.session_state.page = "garden"
 if "flower" not in st.session_state:
     st.session_state.flower = None
+if "confirm_flower" not in st.session_state:
+    st.session_state.confirm_flower = False
 
 if st.session_state.page == "garden":
     #SCREEN 1: garden
@@ -27,13 +29,26 @@ elif st.session_state.page == "choose_flower":
 
     if st.button("Plant flower"):
         st.session_state.flower = selected_flower
-        st.write(f"I remind you of {selected_flower}! <3")
-        st.session_state.page = "new_memory"
+        st.session_state.page = "confirm_flower"
         st.rerun()
 
     if st.button("Back to garden"):
         st.session_state.page = "garden"
         st.rerun()
+
+elif st.session_state.page == "confirm_flower":
+    #SCREEN 2.5: confirm flower
+    st.title("Confirm your choice")
+    st.write(f"In your hands is a {st.session_state.flower} seed... will you plant it?")
+
+    if st.button("Yes, plant it!"):
+        st.session_state.page = "new_memory"
+        st.rerun()
+
+    if st.button("No, let me think again..."):
+        st.session_state.page = "choose_flower"
+        st.rerun()
+
 
 elif st.session_state.page == "new_memory":
     #SCREEN 3: new memory
