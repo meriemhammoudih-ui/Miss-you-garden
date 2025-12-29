@@ -54,7 +54,7 @@ elif st.session_state.page == "new_memory":
     memory_tag = st.text_area("What made me think of you was...", placeholder="e.g. 'An ugly teddy bear'")
     memory_image = st.file_uploader("What made me think of you looks like...", type=["png", "jpg", "jpeg", "HEIC"], help="Upload an image from thwat moment.")
     memory_image_caption = st.text_input("Image caption:", placeholder="e.g. 'The ugly teddy bear we got on our first date.'")
-    memory_audio = st.audio("What made me think of you sounds like...", type=["mp3", "wav", "m4a"],help="Upload an audio from that moment.")
+    memory_audio = st.file_uploader("What made me think of you sounds like...", type=["mp3", "wav", "m4a"],help="Upload an audio from that moment.")
     
     if st.button("Attatch memory tag!"):
         st.session_state.page = "flower_overview"
