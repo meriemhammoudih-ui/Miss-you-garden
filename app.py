@@ -57,6 +57,10 @@ elif st.session_state.page == "new_memory":
     memory_audio = st.file_uploader("What made me think of you sounds like...", type=["mp3", "wav", "m4a"],help="Upload an audio from that moment.")
     
     if st.button("Attatch memory tag!"):
+        st.session_state.memory_tag = memory_tag
+        st.session_state.memory_image = memory_image
+        st.session_state.memory_image_caption = memory_image_caption
+        st.session_state.memory_audio = memory_audio
         st.session_state.page = "flower_overview"
         st.rerun()
 
@@ -72,7 +76,12 @@ elif st.session_state.page == "flower_overview":
     #SCREEN 4: flower overview
     st.title("Your flower is ready to reach the garden!")
     st.write(f"Here's your {st.session_state.flower}:")
-    st.write(f"**Memory tag:** {st.session_state.memory_tag},{st.session_state.memory_image},{st.session_state.memory_image_caption},{st.session_state.memory_audio}")
+    st.write(f"**Memory tag:** {st.session_state.memory_tag}")
+    if st.session_state.memory_image is not None:
+        st.image(st.session_state.memory_image, caption=st.session_state.memory_image_caption)
+    
+    if st.session_state.memory_audio is not None:
+        st.audio(st.session_state.memory_audio)
     
     st.write("Are you ready to send it to the garden?")
     if st.button ("Yes, I'm ready!"):
