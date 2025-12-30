@@ -52,7 +52,7 @@ elif st.session_state.page == "new_memory":
 
     st.subheader("Memory tag:")
     memory_tag = st.text_area("What made me think of you was...", placeholder="e.g. 'An ugly teddy bear'")
-    memory_image = st.file_uploader("What made me think of you looks like...", type=["png", "jpg", "jpeg", "HEIC"], help="Upload an image from thwat moment.")
+    memory_image = st.file_uploader("What made me think of you looks like...", type=["png", "jpg", "jpeg", "HEIC"], help="Upload an image from that moment.")
     memory_image_caption = st.text_input("Image caption:", placeholder="e.g. 'The ugly teddy bear we got on our first date.'")
     memory_audio = st.file_uploader("What made me think of you sounds like...", type=["mp3", "wav", "m4a"],help="Upload an audio from that moment.")
     
@@ -60,9 +60,25 @@ elif st.session_state.page == "new_memory":
         st.session_state.page = "flower_overview"
         st.rerun()
 
+    if st.button("Back to shop"):
+        st.session_state.page = "choose_flower"
+        st.rerun()
+
     if st.button("Back to garden"):
         st.session_state.page = "garden"
         st.rerun()
 
 elif st.session_state.page == "flower_overview":
-    st.title("COMING SOON!")
+    #SCREEN 4: flower overview
+    st.title("Your flower is ready to reach the garden!")
+    st.write(f"Here's your {st.session_state.flower}:")
+    st.write(f"**Memory tag:** {st.session_state.memory_tag},{st.session_state.memory_image},{st.session_state.memory_image_caption},{st.session_state.memory_audio}")
+    
+    st.write("Are you ready to send it to the garden?")
+    if st.button ("Yes, I'm ready!"):
+        st.session_state.page = "garden"
+        st.rerun()
+    
+    if st.button ("No, I need to remember more."):
+        st.session_state.page = "new_memory"
+        st.rerun()
